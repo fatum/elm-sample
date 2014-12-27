@@ -1,0 +1,56 @@
+Elm.View = Elm.View || {};
+Elm.View.make = function (_elm) {
+   "use strict";
+   _elm.View = _elm.View || {};
+   if (_elm.View.values)
+   return _elm.View.values;
+   var _op = {},
+   _N = Elm.Native,
+   _U = _N.Utils.make(_elm),
+   _L = _N.List.make(_elm),
+   _P = _N.Ports.make(_elm),
+   $moduleName = "View",
+   $Html = Elm.Html.make(_elm),
+   $Html$Attributes = Elm.Html.Attributes.make(_elm),
+   $Html$Events = Elm.Html.Events.make(_elm),
+   $Signal = Elm.Signal.make(_elm);
+   var renderLayout = function (children) {
+      return A2($Html.div,
+      _L.fromArray([$Html$Attributes.$class("container")]),
+      children);
+   };
+   var body = A2($Html.div,
+   _L.fromArray([$Html$Attributes.$class("row")]),
+   _L.fromArray([A2($Html.ul,
+   _L.fromArray([$Html$Attributes.$class("nav nav-tabs")]),
+   _L.fromArray([A2($Html.li,
+   _L.fromArray([$Html$Attributes.$class("active")]),
+   _L.fromArray([A2($Html.a,
+   _L.fromArray([$Html$Attributes.href("#")]),
+   _L.fromArray([$Html.text("Home")]))]))]))]));
+   var Add = function (a) {
+      return {ctor: "Add",_0: a};
+   };
+   var NoOp = {ctor: "NoOp"};
+   var updatesChannel = $Signal.channel(NoOp);
+   var menu = A2($Html.nav,
+   _L.fromArray([$Html$Attributes.$class("navbar navbar-default")]),
+   _L.fromArray([A2($Html.div,
+   _L.fromArray([$Html$Attributes.$class("container-fluid")]),
+   _L.fromArray([A2($Html.div,
+   _L.fromArray([$Html$Attributes.$class("navbar-header")]),
+   _L.fromArray([A2($Html.a,
+   _L.fromArray([$Html$Events.onClick(A2($Signal.send,
+                updatesChannel,
+                Add(1)))
+                ,$Html$Attributes.$class("navbar-brand")]),
+   _L.fromArray([$Html.text("Sample App")]))]))]))]));
+   _elm.View.values = {_op: _op
+                      ,NoOp: NoOp
+                      ,Add: Add
+                      ,updatesChannel: updatesChannel
+                      ,menu: menu
+                      ,body: body
+                      ,renderLayout: renderLayout};
+   return _elm.View.values;
+};
